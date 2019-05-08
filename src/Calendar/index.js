@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { eachDay, addDays, format } from "date-fns";
-import { generateBookableIntervals } from "../common";
+import React, {Component} from "react";
+import {eachDay, addDays, format} from "date-fns";
+import {generateBookableIntervals} from "../common";
 
 const now = new Date();
 const dates = eachDay(now, addDays(now, 5)).map(date => ({
@@ -10,7 +10,7 @@ const dates = eachDay(now, addDays(now, 5)).map(date => ({
 }));
 export default class Calendar extends Component {
   handleTimeslotClicked = (timeslotId, date) => e => {
-    this.props.setTimeslot({ timeslotId, date });
+    this.props.setTimeslot({timeslotId, date});
   };
   render() {
     return (
@@ -33,20 +33,27 @@ export default class Calendar extends Component {
   }
 
   renderTimeSlots(dateString) {
-    const { timeslotId, date } = this.props;
-    return generateBookableIntervals().map((x, i) => (
-      <div
+    const {timeslotId, date, reservations, roomId} = this.props;
+
+    return generateBookableIntervals().map((x, i) => {
+      let isReserved = reservations.findIndex(reservation => reservation.timeslotId === i && reservation.date === dateString && reservation.roomId === roomId) >= 0
+      let bgClass = '';
+      if (isReserved) {
+        bgClass = 'bg-grey';
+      } else if (timeslotId === i && date === dateString) {
+        bgClass = 'bg-orange-light'
+      } else {
+        bgClass = 'bg-blue hover:bg-orange-light cursor-pointer ';
+      }
+      return (<div
         key={i}
-        onClick={this.handleTimeslotClicked(i, dateString)}
-        className={`${
-          timeslotId === i && date === dateString
-            ? "bg-orange-light"
-            : "bg-blue"
-        } cursor-pointer text-center flex-shrink hover:bg-orange-light text-white mb-1 px-2 py-4 mr-1 sm:mr-0`}
+        onClick={!isReserved && this.handleTimeslotClicked(i, dateString)}
+        className={`${bgClass} text-center flex-shrink text-white mb-1 px-2 py-4 mr-1 sm:mr-0`}
       >
         {x.start < 10 ? "0" : ""}
         {x.start}:00 - {x.end}:00
       </div>
-    ));
+      )
+    });
   }
 }
