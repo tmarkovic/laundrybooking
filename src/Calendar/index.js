@@ -1,7 +1,6 @@
-import React, {Component} from "react";
-import Header from "./header";
-import {eachDay, addDays, format} from "date-fns";
-import {generateBookableIntervals} from "../common";
+import React, { Component } from "react";
+import { eachDay, addDays, format } from "date-fns";
+import { generateBookableIntervals } from "../common";
 
 const now = new Date();
 const dates = eachDay(now, addDays(now, 5)).map(date => ({
@@ -10,19 +9,14 @@ const dates = eachDay(now, addDays(now, 5)).map(date => ({
   dateMonth: format(date, "MMM Do")
 }));
 export default class Calendar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timeslotId: 0, date: ''
-    }
-  }
-
-  handleTimeslotClicked = (timeslotId, date) => (e) => {
-    this.setState({timeslotId, date})
-  }
+  handleTimeslotClicked = (timeslotId, date) => e => {
+    this.props.setTimeslot({ timeslotId, date });
+  };
   render() {
     return (
-      <div className="flex flex-col sm:flex-row justify-around">{this.renderDates(dates)}</div>
+      <div className="flex flex-col sm:flex-row justify-around">
+        {this.renderDates(dates)}
+      </div>
     );
   }
 
@@ -39,14 +33,20 @@ export default class Calendar extends Component {
   }
 
   renderTimeSlots(dateString) {
+    const { timeslotId, date } = this.props;
     return generateBookableIntervals().map((x, i) => (
-      <div key={i} onClick={this.handleTimeslotClicked(i, dateString)} className="cursor-pointer text-center flex-shrink hover:bg-orange-light bg-blue text-white mb-1 px-2 py-4 mr-1 sm:mr-0">
-        {x.start < 10 ? '0' : ''}{x.start}:00 - {x.end}:00
-    </div>
+      <div
+        key={i}
+        onClick={this.handleTimeslotClicked(i, dateString)}
+        className={`${
+          timeslotId === i && date === dateString
+            ? "bg-orange-light"
+            : "bg-blue"
+        } cursor-pointer text-center flex-shrink hover:bg-orange-light text-white mb-1 px-2 py-4 mr-1 sm:mr-0`}
+      >
+        {x.start < 10 ? "0" : ""}
+        {x.start}:00 - {x.end}:00
+      </div>
     ));
   }
 }
-
-
-
-

@@ -1,13 +1,19 @@
-const createReservation = ({date, apartmentId, timeSlotId, roomId}) => {
-  console.log({date, apartmentId, timeSlotId, roomId});
+const createReservation = async ({ date, apartmentId, timeslotId, roomId }) => {
+  try {
+    let response = await fetch(`/api/reservations`, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ date, apartmentId, timeslotId, roomId }) // body data type must match "Content-Type" header
+    });
 
-  return fetch(`/api/reservations`, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({date, apartmentId, timeSlotId, roomId}) // body data type must match "Content-Type" header
-  }).then(response => response.json()); // parses JSON response into native Javascript objects
+    let data = await response.json();
+
+    return data;
+  } catch {
+    return null;
+  }
 };
 
-export {createReservation};
+export { createReservation };

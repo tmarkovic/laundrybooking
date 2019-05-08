@@ -1,4 +1,25 @@
 {
-  "users": [],
-  "reservations": []
+  "reservations": [
+    {
+      "date": "2019-05-07T22:00:00.000Z",
+      "apartmentId": "123",
+      "timeslotId": 4,
+      "roomId": 1,
+      "id": 1
+    },
+    {
+      "date": "2019-05-07T22:00:00.000Z",
+      "apartmentId": "123",
+      "timeslotId": 3,
+      "roomId": 1,
+      "id": 2
+    },
+    {
+      "date": "2019-05-07T22:00:00.000Z",
+      "apartmentId": "1234",
+      "timeslotId": 4,
+      "roomId": 1,
+      "id": 3
+    }
+  ]
 }
