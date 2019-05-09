@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 export default class BookingForm extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class BookingForm extends Component {
   }
 
   render() {
-    const { roomId } = this.props;
+    const {roomId, apartmentId} = this.props;
     return (
       <div className="flex h-full items-left mb-4 md:flex flex-col">
         <div className="flex flex-col mb-4 w-full">
@@ -57,7 +57,7 @@ export default class BookingForm extends Component {
                 roomId === 1
                   ? "bg-green-light hover:bg-green"
                   : "bg-grey-light hover:bg-green"
-              }  text-grey-darkest font-bold py-2 px-4 rounded-l`}
+                }  text-grey-darkest font-bold py-2 px-4 rounded-l`}
             >
               Room 1
             </button>
@@ -68,7 +68,7 @@ export default class BookingForm extends Component {
                 roomId === 2
                   ? "bg-green-light hover:bg-green"
                   : "bg-grey-light hover:bg-green"
-              }  text-grey-darkest font-bold py-2 px-4 rounded-r`}
+                }  text-grey-darkest font-bold py-2 px-4 rounded-r`}
             >
               Room 2
             </button>
@@ -78,7 +78,8 @@ export default class BookingForm extends Component {
         <div className="flex w-full mt-auto">
           <button
             onClick={this.handleCreateReservation}
-            className="block bg-teal hover:bg-teal-dark text-white uppercase text-md mx-auto p-4 rounded"
+            disabled={!apartmentId}
+            className={` ${!apartmentId ? "opacity-50" : "hover:bg-teal-dark"} block bg-teal  text-white uppercase text-md mx-auto p-4 rounded disabled`}
             type="submit"
           >
             Book time

@@ -4,7 +4,7 @@ import {generateBookableIntervals} from "../common";
 
 const now = new Date();
 const dates = eachDay(now, addDays(now, 5)).map(date => ({
-  fullDateString: date.toISOString(),
+  fullDateString: format(date, 'YYYY-MM-DD'),
   day: format(date, "ddd"),
   dateMonth: format(date, "MMM Do")
 }));
@@ -47,7 +47,7 @@ export default class Calendar extends Component {
       }
       return (<div
         key={i}
-        onClick={!isReserved && this.handleTimeslotClicked(i, dateString)}
+        onClick={!isReserved ? this.handleTimeslotClicked(i, dateString) : undefined}
         className={`${bgClass} text-center flex-shrink text-white mb-1 px-2 py-4 mr-1 sm:mr-0`}
       >
         {x.start < 10 ? "0" : ""}

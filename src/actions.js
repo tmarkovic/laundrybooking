@@ -5,7 +5,8 @@ const types = {
   SET_ROOM_ID: "SET_ROOM_ID",
   SET_TIMESLOT: "SET_TIMESLOT",
   SET_LOADING: "SET_LOADING",
-  SET_RESERVATIONS: "SET_RESERVATIONS"
+  SET_RESERVATIONS: "SET_RESERVATIONS",
+  ADD_RESERVATION: "ADD_RESERVATION",
 };
 const actions = {
   setApartmentId: id => ({
@@ -28,6 +29,10 @@ const actions = {
     type: types.SET_LOADING,
     payload: {isLoading}
   }),
+  addReservation: reservation => ({
+    type: types.ADD_RESERVATION,
+    payload: reservation
+  }),
 
   createReservation: () => async (dispatch, getState) => {
     dispatch(actions.setLoading(true));
@@ -41,11 +46,14 @@ const actions = {
     !response && alert("Something went south");
 
     dispatch(actions.setLoading(false));
+    dispatch(actions.addReservation({date, apartmentId, timeslotId, roomId}))
+    dispatch(actions.setTimeslot({timeslotId: null, date: null}));
   },
 
   loadReservations: (startDate, endDate) => async (dispatch, getState) => {
     dispatch(actions.setLoading(true));
     let response = await getReservations({startDate, endDate});
+    console.log(response);
     dispatch(actions.setReservations(response));
     dispatch(actions.setLoading(false));
   }

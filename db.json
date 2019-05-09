@@ -1,25 +1,3 @@
 {
-  "reservations": [
-    {
-      "date": "2019-05-07T22:00:00.000Z",
-      "apartmentId": "123",
-      "timeslotId": 0,
-      "roomId": 1,
-      "id": 1
-    },
-    {
-      "date": "2019-05-08T22:00:00.000Z",
-      "apartmentId": "123",
-      "timeslotId": 0,
-      "roomId": 1,
-      "id": 2
-    },
-    {
-      "date": "2019-05-09T22:00:00.000Z",
-      "apartmentId": "123",
-      "timeslotId": 0,
-      "roomId": 1,
-      "id": 3
-    }
-  ]
+  "reservations": []
 }

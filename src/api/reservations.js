@@ -17,6 +17,7 @@ const createReservation = async ({date, apartmentId, timeslotId, roomId}) => {
 };
 
 const getReservations = async ({startDate, endDate}) => {
+  console.log(startDate)
   try {
     let response = await fetch(`/api/reservations?date_gte=${startDate}date_lte=${endDate}`, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.

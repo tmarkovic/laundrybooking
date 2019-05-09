@@ -29,8 +29,13 @@ export default (state = INITIAL_STATE, action) => {
     case types.SET_RESERVATIONS:
       return {
         ...state,
-        ...action.payload
+        reservations: [...state.reservations, ...action.payload.reservations]
       };
+    case types.ADD_RESERVATION:
+      return {
+        ...state,
+        reservations: [...state.reservations, action.payload]
+      }
     case types.SET_TIMESLOT:
       return {
         ...state,
