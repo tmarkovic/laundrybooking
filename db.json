@@ -1,3 +1,35 @@
 {
-  "reservations": []
+  "users": [
+    {
+      "email": "test@test",
+      "password": "$2a$10$ROdEF..DihKCdFF9ED9Nju0NcPqIL1pNRhw66z7gwR7oJhFPqcCpm",
+      "id": 1
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$KpUCTFF.m2SLTOGKJK2EpefhJKtHdOzONuWTIGNZ2DXk5/zM4o1cW",
+      "apartmentId": 1,
+      "id": 2
+    },
+    {
+      "email": "test2@test.com",
+      "password": "$2a$10$2M7SI3bAEHqhCiyxWhcW7u..uyanedDmMue6U0eRE..m55oAdh2MK",
+      "apartmentId": 2,
+      "id": 3
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "date": "2019-05-10",
+      "timeslotId": 0,
+      "roomId": 1,
+      "id": 3
+    }
+  ]
 }

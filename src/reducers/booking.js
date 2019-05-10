@@ -1,7 +1,6 @@
-import {types} from "./actions";
+import {types} from "../actions/reservation";
 
 const INITIAL_STATE = {
-  apartmentId: 0,
   roomId: 1,
   timeslotId: null,
   date: null,
@@ -16,11 +15,6 @@ const INITIAL_STATE = {
  */
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case types.SET_APARTMENT_ID:
-      return {
-        ...state,
-        apartmentId: action.payload
-      };
     case types.SET_ROOM_ID:
       return {
         ...state,

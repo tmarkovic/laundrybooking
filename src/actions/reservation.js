@@ -1,4 +1,4 @@
-import {createReservation, getReservations} from "./api/reservations";
+import {createReservation, getReservations} from "../api/reservations";
 
 const types = {
   SET_APARTMENT_ID: "SET_APARTMENT_ID",
@@ -36,17 +36,16 @@ const actions = {
 
   createReservation: () => async (dispatch, getState) => {
     dispatch(actions.setLoading(true));
-    const {date, apartmentId, timeslotId, roomId} = getState();
+    const {date, timeslotId, roomId} = getState().booking;
     let response = await createReservation({
       date,
-      apartmentId,
       timeslotId,
       roomId
     });
     !response && alert("Something went south");
 
     dispatch(actions.setLoading(false));
-    dispatch(actions.addReservation({date, apartmentId, timeslotId, roomId}))
+    dispatch(actions.addReservation({date, timeslotId, roomId}))
     dispatch(actions.setTimeslot({timeslotId: null, date: null}));
   },
 

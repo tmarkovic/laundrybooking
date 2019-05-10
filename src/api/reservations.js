@@ -1,11 +1,12 @@
-const createReservation = async ({date, apartmentId, timeslotId, roomId}) => {
+const createReservation = async ({ date, timeslotId, roomId }) => {
+  console.log(date, timeslotId, roomId);
   try {
     let response = await fetch(`/api/reservations`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({date, apartmentId, timeslotId, roomId}) // body data type must match "Content-Type" header
+      body: JSON.stringify({ date, timeslotId, roomId }) // body data type must match "Content-Type" header
     });
 
     let data = await response.json();
@@ -16,15 +17,17 @@ const createReservation = async ({date, apartmentId, timeslotId, roomId}) => {
   }
 };
 
-const getReservations = async ({startDate, endDate}) => {
-  console.log(startDate)
+const getReservations = async ({ startDate, endDate }) => {
   try {
-    let response = await fetch(`/api/reservations?date_gte=${startDate}date_lte=${endDate}`, {
-      method: "GET", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json"
+    let response = await fetch(
+      `/api/reservations?date_gte=${startDate}date_lte=${endDate}`,
+      {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json"
+        }
       }
-    });
+    );
 
     let data = await response.json();
 
@@ -34,4 +37,4 @@ const getReservations = async ({startDate, endDate}) => {
   }
 };
 
-export {createReservation, getReservations};
+export { createReservation, getReservations };

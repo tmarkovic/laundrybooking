@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import BookingForm from "./BookingForm";
 import Calendar from "./Calendar";
-import {connect} from "react-redux";
-import {actions} from "./actions";
+import { connect } from "react-redux";
+import { actions } from "./actions/reservation";
 
 class Booking extends Component {
   render() {
@@ -10,8 +10,6 @@ class Booking extends Component {
       timeslotId,
       date,
       roomId,
-      apartmentId,
-      setApartmentId,
       setRoomId,
       setTimeslot,
       createReservation,
@@ -19,13 +17,12 @@ class Booking extends Component {
     } = this.props;
     return (
       <div className="App container mx-auto">
-        <div className="flex flex-row py-4">
-          <div className="w-1/4 md:mr-4">
+        <div className="flex flex-col-reverse py-4 md:flex-row">
+          <div className="w-full md:w-1/4 md:mr-4 mt-4 md:mt-0">
             <BookingForm
-              setApartmentId={setApartmentId}
               setRoomId={setRoomId}
+              date={date}
               roomId={roomId}
-              apartmentId={apartmentId}
               createReservation={createReservation}
             />
           </div>
@@ -45,18 +42,17 @@ class Booking extends Component {
 }
 
 const mapStateToProps = state => {
-  return {...state};
+  return { ...state.booking };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setApartmentId: id => dispatch(actions.setApartmentId(id)),
     setRoomId: id => dispatch(actions.setRoomId(id)),
-    setTimeslot: ({timeslotId, date}) =>
-      dispatch(actions.setTimeslot({timeslotId, date})),
+    setTimeslot: ({ timeslotId, date }) =>
+      dispatch(actions.setTimeslot({ timeslotId, date })),
     createReservation: () => {
       dispatch(actions.createReservation());
-    },
+    }
   };
 };
 export default connect(

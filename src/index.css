@@ -531,6 +531,39 @@ table {
   }
 }
 
+.btn-toggle {
+  color: #3d4852;
+  font-weight: 700;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 50%;
+}
+
+.btn-toggle-first {
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
+
+.btn-toggle-last {
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
+.btn-toggle-active {
+  background-color: #a2f5bf;
+}
+
+.btn-toggle-inactive {
+  background-color: #f1f5f8;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, .06);
+}
+
+.btn-toggle-inactive:hover {
+  background-color: #a2f5bf;
+}
+
 /**
   * Here you would add any of your custom component classes; stuff that you'd
   * want loaded *before* the utilities so that the utilities could still

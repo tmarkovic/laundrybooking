@@ -3,16 +3,17 @@ import ReduxThunk from "redux-thunk";
 
 // Logger with default options
 import logger from "redux-logger";
-import reducer from "./reducer";
+import rootReducer from "./reducers";
+
 
 export default function configureStore(initialState) {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(
-    reducer,
+    rootReducer,
     initialState,
     composeEnhancers(
-      applyMiddleware(ReduxThunk, logger)
+      applyMiddleware(ReduxThunk)
     )
   );
   return store;

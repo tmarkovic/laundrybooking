@@ -1,11 +1,9 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import {isDate} from "util";
 
 export default class BookingForm extends Component {
   constructor(props) {
     super(props);
-    this.handleApartmentCodeChanged = this.handleApartmentCodeChanged.bind(
-      this
-    );
     this.handleRoomIdChanged = this.handleRoomIdChanged.bind(this);
     this.handleCreateReservation = this.handleCreateReservation.bind(this);
   }
@@ -14,34 +12,14 @@ export default class BookingForm extends Component {
     this.props.setRoomId(parseInt(e.target.value));
   }
 
-  handleApartmentCodeChanged(e) {
-    this.props.setApartmentId(e.target.value);
-  }
-
   handleCreateReservation(e) {
     this.props.createReservation();
   }
 
   render() {
-    const {roomId, apartmentId} = this.props;
+    const { roomId, date } = this.props;
     return (
       <div className="flex h-full items-left mb-4 md:flex flex-col">
-        <div className="flex flex-col mb-4 w-full">
-          <label
-            className="mb-2 uppercase text-left font-bold text-md text-grey-darkest"
-            htmlFor="apartment_code"
-          >
-            apartment code
-          </label>
-          <input
-            onChange={this.handleApartmentCodeChanged}
-            type="text"
-            className="border py-2 px-3 text-grey-darkest"
-            name="apartment_code"
-            id="apartment_code"
-          />
-        </div>
-
         <div className="flex flex-col mb-4 w-full">
           <label
             className="mb-2 text-left uppercase font-bold text-md text-grey-darkest"
@@ -54,10 +32,8 @@ export default class BookingForm extends Component {
               onClick={this.handleRoomIdChanged}
               value="1"
               className={`${
-                roomId === 1
-                  ? "bg-green-light hover:bg-green"
-                  : "bg-grey-light hover:bg-green"
-                }  text-grey-darkest font-bold py-2 px-4 rounded-l`}
+                roomId === 1 ? "btn-toggle-active" : "btn-toggle-inactive"
+              }  btn-toggle btn-toggle-first`}
             >
               Room 1
             </button>
@@ -65,10 +41,8 @@ export default class BookingForm extends Component {
               onClick={this.handleRoomIdChanged}
               value="2"
               className={`${
-                roomId === 2
-                  ? "bg-green-light hover:bg-green"
-                  : "bg-grey-light hover:bg-green"
-                }  text-grey-darkest font-bold py-2 px-4 rounded-r`}
+                roomId === 2 ? "btn-toggle-active" : "btn-toggle-inactive"
+              }  btn-toggle btn-toggle-last`}
             >
               Room 2
             </button>
@@ -78,8 +52,10 @@ export default class BookingForm extends Component {
         <div className="flex w-full mt-auto">
           <button
             onClick={this.handleCreateReservation}
-            disabled={!apartmentId}
-            className={` ${!apartmentId ? "opacity-50" : "hover:bg-teal-dark"} block bg-teal  text-white uppercase text-md mx-auto p-4 rounded disabled`}
+            disabled={!date}
+            className={` ${
+              !date ? "opacity-50" : "hover:bg-teal-dark"
+            } block bg-teal  text-white uppercase text-md mx-auto p-4 rounded disabled`}
             type="submit"
           >
             Book time

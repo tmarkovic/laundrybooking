@@ -20,6 +20,26 @@
   */
 @tailwind components;
 
+.btn-toggle {
+  @apply text-grey-darkest font-bold py-2 px-4 w-1/2;
+}
+.btn-toggle-first {
+  @apply rounded-l;
+}
+.btn-toggle-last {
+  @apply rounded-r;
+}
+.btn-toggle-active {
+  @apply bg-green-lighter;
+}
+.btn-toggle-inactive {
+  @apply bg-grey-lighter shadow-inner;
+}
+.btn-toggle-inactive:hover {
+  @apply bg-green-lighter;
+}
+
+
 /**
   * Here you would add any of your custom component classes; stuff that you'd
   * want loaded *before* the utilities so that the utilities could still
