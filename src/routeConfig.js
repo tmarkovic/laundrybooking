@@ -3,7 +3,7 @@ import Booking from "./BookingPage";
 
 const routes = [
   {
-    path: "/login",
+    path: "/",
     component: Login
   },
   {

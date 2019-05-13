@@ -37,10 +37,12 @@ const actions = {
   createReservation: () => async (dispatch, getState) => {
     dispatch(actions.setLoading(true));
     const {date, timeslotId, roomId} = getState().booking;
+    const {id} = getState().user
     let response = await createReservation({
       date,
       timeslotId,
-      roomId
+      roomId,
+      userId: id
     });
     !response && alert("Something went south");
 
