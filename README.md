@@ -14,4 +14,4 @@
 All data is stored in db.json.
 Two test users are provided:
 * test@test.com, password test
-* test@test.com, password test
+* test2@test.com, password test
