@@ -1,4 +1,4 @@
-import {types} from "../actions/reservation";
+import { types } from "../actions/reservation";
 
 const INITIAL_STATE = {
   roomId: 1,
@@ -23,17 +23,24 @@ export default (state = INITIAL_STATE, action) => {
     case types.SET_RESERVATIONS:
       return {
         ...state,
-        reservations: [...state.reservations, ...action.payload.reservations]
+        reservations: [...action.payload.reservations]
       };
     case types.ADD_RESERVATION:
       return {
         ...state,
         reservations: [...state.reservations, action.payload]
-      }
+      };
     case types.SET_TIMESLOT:
       return {
         ...state,
         ...action.payload
+      };
+    case types.REMOVE_RESERVATION:
+      return {
+        ...state,
+        reservations: state.reservations.filter(
+          reservation => reservation.id !== action.payload
+        )
       };
     case types.SET_LOADING:
       return {

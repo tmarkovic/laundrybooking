@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {isDate} from "util";
 
 export default class BookingForm extends Component {
   constructor(props) {
@@ -55,7 +54,7 @@ export default class BookingForm extends Component {
             disabled={!date}
             className={` ${
               !date ? "opacity-50" : "hover:bg-teal-dark"
-            } block bg-teal  text-white uppercase text-md mx-auto p-4 rounded disabled`}
+            } block bg-teal text-white uppercase text-md mx-auto p-4 rounded disabled`}
             type="submit"
           >
             Book time

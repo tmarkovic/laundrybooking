@@ -1,31 +1,32 @@
 import React from "react";
 import { Provider } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
 import "./App.css";
 import NavBar from "./NavBar";
-import configureStore from "./store";
-import { actions } from "./actions/reservation";
-import { addDays, format, subDays } from "date-fns";
-import routes from "./routeConfig";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import configureStore, { history } from "./store";
+import { actions as userActions } from "./actions/user";
+import LoginPage from "./LoginPage";
+import PrivateRoute from "./PrivateRoute";
+import BookingPage from "./BookingPage";
+import MyReservations from "./MyReservations";
+import Logout from "./Logout";
 
-const now = new Date();
 const store = configureStore();
-store.dispatch(
-  actions.loadReservations(
-    format(subDays(now, 1), "YYYY-MM-DD"),
-    format(addDays(now, 5), "YYYY-MM-DD")
-  )
-);
+store.dispatch(userActions.fetchUserFromLS());
+
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <ConnectedRouter history={history}>
         <NavBar />
-
-        {routes.map((route, i) => (
-          <Route key={i} {...route} />
-        ))}
-      </Router>
+        <Switch>
+          <Route exact path="/" component={LoginPage} />
+          <Route exact path="/logout" component={Logout} />
+          <PrivateRoute path="/booking" component={BookingPage} />
+          <PrivateRoute path="/reservations" component={MyReservations} />
+        </Switch>
+      </ConnectedRouter>
     </Provider>
   );
 }

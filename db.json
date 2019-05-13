@@ -1,15 +1,34 @@
 {
+  "auth": [],
   "users": [
     {
       "email": "test@test",
       "password": "$2a$10$ROdEF..DihKCdFF9ED9Nju0NcPqIL1pNRhw66z7gwR7oJhFPqcCpm",
-      "id": 1
+      "id": 1,
+      "reservations": [
+        {
+          "date": "2019-05-13",
+          "timeslotId": 0,
+          "roomId": 1,
+          "userId": 2,
+          "id": 5
+        }
+      ]
     },
     {
       "email": "test@test.com",
       "password": "$2a$10$KpUCTFF.m2SLTOGKJK2EpefhJKtHdOzONuWTIGNZ2DXk5/zM4o1cW",
       "apartmentId": 1,
-      "id": 2
+      "id": 2,
+      "reservations": [
+        {
+          "date": "2019-05-13",
+          "timeslotId": 0,
+          "roomId": 1,
+          "userId": 2,
+          "id": 5
+        }
+      ]
     },
     {
       "email": "test2@test.com",
@@ -20,16 +39,32 @@
   ],
   "reservations": [
     {
-      "id": 1
-    },
-    {
+      "date": "2019-05-13",
+      "timeslotId": 1,
+      "roomId": 1,
+      "userId": "2",
       "id": 2
     },
     {
-      "date": "2019-05-10",
-      "timeslotId": 0,
+      "date": "2019-05-13",
+      "timeslotId": 2,
       "roomId": 1,
+      "userId": "2",
       "id": 3
+    },
+    {
+      "date": "2019-05-14",
+      "timeslotId": 0,
+      "roomId": 2,
+      "userId": "2",
+      "id": 4
+    },
+    {
+      "date": "2019-05-15",
+      "timeslotId": 1,
+      "roomId": 1,
+      "userId": "3",
+      "id": 5
     }
   ]
 }

@@ -8,12 +8,31 @@ const authenticateUser = async ({ email, password }) => {
       body: JSON.stringify({ email, password })
     });
 
-    let data = await response.json();
-
-    return data;
+    if (response.ok) {
+      return await response.json();
+    }
+    return null;
   } catch {
     return null;
   }
 };
 
-export { authenticateUser };
+const validateAccessToken = async () => {
+  let token = localStorage.getItem("accessToken");
+  if (!token) {
+    return false;
+  }
+  try {
+    await fetch("/api/auth", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return true;
+  } catch {
+    return false;
+  }
+};
+export { authenticateUser, validateAccessToken };
