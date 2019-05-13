@@ -12,4 +12,7 @@ const generateBookableIntervals = (length = 15, slices = 5, start = 7) => {
     end: x ? x * sliceLength + (start + sliceLength) : start + sliceLength
   }));
 };
-export { generateBookableIntervals };
+
+const formatHour = hour => (hour < 10 ? `0${hour}:00` : `${hour}:00`);
+
+export { generateBookableIntervals, formatHour };

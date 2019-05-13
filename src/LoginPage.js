@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { actions } from "./actions/user";
 
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -64,12 +63,6 @@ class Login extends Component {
             >
               Sign In
             </button>
-            <a
-              className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker"
-              href="#"
-            >
-              Forgot Password?
-            </a>
           </div>
         </form>
       </div>

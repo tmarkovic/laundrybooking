@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { eachDay, addDays, format } from "date-fns";
-import { generateBookableIntervals } from "../common";
+import { generateBookableIntervals, formatHour } from "../common";
 
 const now = new Date();
 const dates = eachDay(now, addDays(now, 5)).map(date => ({
@@ -15,7 +15,9 @@ export default class Calendar extends Component {
   render() {
     return (
       <div>
-        <p className="mb-2 text-left uppercase font-bold text-md text-grey-darkest">Time slot</p>
+        <p className="mb-2 text-left uppercase font-bold text-md text-grey-darkest">
+          Time slot
+        </p>
         <div className="flex flex-col sm:flex-row justify-around">
           {this.renderDates(dates)}
         </div>
@@ -62,8 +64,7 @@ export default class Calendar extends Component {
           }
           className={`${bgClass} text-center flex-shrink text-white mb-1 px-2 py-4 mr-1 sm:mr-0`}
         >
-          {x.start < 10 ? "0" : ""}
-          {x.start}:00 - {x.end}:00
+          {formatHour(x.start)} - {formatHour(x.end)}
         </div>
       );
     });

@@ -15,10 +15,10 @@ export default function NavBar() {
           </li>
           <li>
             <Link
-              to="/my-account"
+              to="/reservations"
               className="text-blue-lighter hover:text-white no-underline"
             >
-              My Account
+              My Reservations
             </Link>
           </li>
           <li className="ml-auto">

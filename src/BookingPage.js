@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import { actions } from "./actions/reservation";
 
 class Booking extends Component {
+  componentDidMount() {
+    this.props.fetchReservations();
+  }
   render() {
     const {
       timeslotId,
@@ -13,7 +16,8 @@ class Booking extends Component {
       setRoomId,
       setTimeslot,
       createReservation,
-      reservations
+      reservations,
+      isLoading
     } = this.props;
     return (
       <div className="App container mx-auto">
@@ -27,13 +31,17 @@ class Booking extends Component {
             />
           </div>
           <div className="w-full">
-            <Calendar
-              timeslotId={timeslotId}
-              date={date}
-              setTimeslot={setTimeslot}
-              reservations={reservations}
-              roomId={roomId}
-            />
+            {isLoading ? (
+              "loading..."
+            ) : (
+              <Calendar
+                timeslotId={timeslotId}
+                date={date}
+                setTimeslot={setTimeslot}
+                reservations={reservations}
+                roomId={roomId}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -52,6 +60,9 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.setTimeslot({ timeslotId, date })),
     createReservation: () => {
       dispatch(actions.createReservation());
+    },
+    fetchReservations: () => {
+      dispatch(actions.loadReservations());
     }
   };
 };

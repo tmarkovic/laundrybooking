@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 import booking from "./booking";
 import user from "./user";
+import { connectRouter } from "connected-react-router";
 
-export default combineReducers({ booking, user });
+export default history =>
+  combineReducers({ booking, user, router: connectRouter(history) });
